@@ -1,12 +1,7 @@
 package com.model;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -41,6 +36,10 @@ public String getPassword() {
 
 public void setPassword(String password) {
 	this.password = password;
+}
+@Override
+public String toString() {
+	return "User [username=" + username + ", password=" + password + "]";
 }
 
 

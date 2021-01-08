@@ -22,40 +22,44 @@ import com.service.TravellerService;
 public class TravellerController {
 	
 	@Autowired  
-	TravellerService travellerService;  
-	//creating a get mapping that retrieves all the journey detail from the database   
+	TravellerService travellerService;
+	
+	//creating a get mapping that retrieves all the journey detail from the database of a particular user  
 	@GetMapping("/{username}/traveller")  
 	private List<Traveller> getAllTraveller(@PathVariable("username") String username)   
 	{  
 	return travellerService.getAllTraveller(username);  
 	}  
+	
 	//creating a get mapping that retrieves the detail of a specific journey  
 	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
 	private Traveller getTraveller(@PathVariable("id") Long id)   
 	{  
 	return travellerService.getTravellerById(id);  
 	}  
+	
+	//creating a get mapping that retrieves the detail of all person with a specific name
 	@RequestMapping(value ="name/{name}",method = RequestMethod.GET)
 	private List<Traveller> getTravellerByName(@PathVariable("name") String name)
 	{
 		return travellerService.findByName(name);
 	}
+	
+	
 	@RequestMapping(value = "destination/{destination}", method = RequestMethod.GET)
 	private List<Traveller> getTravelleByDestination(@PathVariable("destination") String destination)   
 	{  
 	return travellerService.findByDestination(destination);  
 	}  
+	
+	//creating a put mapping that update the details of a journey by id
 	@PutMapping("update/{id}")
 	public void updateTraveller(@PathVariable Long id, @RequestBody Traveller traveller) {
-	        travellerService.updateTraveller(id, traveller);
+		String destination=traveller.getDestination();
+		java.util.Date enddate=traveller.getEnddate();
+	        travellerService.updateTraveller(id, destination,enddate);
 	}
 	
-	@PostMapping("/{username}/traveller")  
-	private Long saveStudent(@RequestBody Traveller traveller,@PathVariable("username") String username)   
-	{  
-	 traveller.setUser(new User(username,""));
-	travellerService.save(traveller);  
-	return traveller.getId();  
-	}  
+  
 
 }

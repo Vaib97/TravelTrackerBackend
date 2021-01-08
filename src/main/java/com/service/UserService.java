@@ -12,13 +12,19 @@ public class UserService implements IUserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public  User findUser(User user)   
-	{  
-	return userRepository.findUser(user.getUsername(),user.getPassword());  
+	
+	//method to find a user with particular user name and password exist or not
+	public  boolean findUserCredentials(User user)   
+	{ 
+	if( userRepository.findUser(user.getUsername(),user.getPassword())!=null)
+		return true;
+	else 
+		return false;
 	}
-
+    
+	//method to save a not existing user name during sign up
 	public boolean saveUser(User user) {
-		// TODO Auto-generated method stub
+		
 		if(userRepository.findByUsername(user.getUsername())==null)
 		{
 			userRepository.save(user);

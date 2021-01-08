@@ -4,5 +4,5 @@ import com.model.User;
 
 public interface IUserService {
 
-	User findUser(User user);
+	boolean findUserCredentials(User user);
 }

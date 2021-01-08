@@ -17,12 +17,16 @@ import com.service.UserService;
 public class UserController {
 	@Autowired
 	UserService userService;
-  
+    
+	
+	//create a post mapping that check the user credentials during login
 	@PostMapping("/login")
-	private User getUser(@RequestBody User user)   
+	private boolean getUser(@RequestBody User user)   
 	{  
-	return userService.findUser(user);  
+	return userService.findUserCredentials(user);  
 	} 
+	
+	//create a post mapping that register a new user 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	private boolean saveUser(@RequestBody User user)   
 	{  

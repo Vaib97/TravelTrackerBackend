@@ -2,14 +2,14 @@ package com.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+
 
 @Entity
 
@@ -88,6 +88,12 @@ public class Traveller {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Traveller [id=" + id + ", name=" + name + ", source=" + source + ", destination=" + destination
+				+ ", startdate=" + startdate + ", enddate=" + enddate + ", user=" + user + "]";
 	}
 	
 	
